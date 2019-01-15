@@ -72,3 +72,15 @@ void Element::setTargetVectorAt(int i, double n) {
     targetVector[i] = n;
 }
 
+bool Element::operator>(Element &element) {
+    bool oneIsSmaller = false;
+    for (int i=0; i<targetVectorDimension; i++) {
+        if (targetVector[i] > element.targetVector[i]) {
+            return false;
+        }
+        if (targetVector[i] < element.targetVector[i]) {
+            oneIsSmaller = true;
+        }
+    }
+    return oneIsSmaller;
+}

@@ -90,6 +90,9 @@
 		<Unit filename="/home/amichai/CLionProjects/jasmine-cpp-5/Element.h">
 			<Option target="jasmine_cpp_5"/>
 		</Unit>
+		<Unit filename="/home/amichai/CLionProjects/jasmine-cpp-5/Pareto.h">
+			<Option target="jasmine_cpp_5"/>
+		</Unit>
 		<Unit filename="/home/amichai/CLionProjects/jasmine-cpp-5/Simulation.cpp">
 			<Option target="jasmine_cpp_5"/>
 		</Unit>

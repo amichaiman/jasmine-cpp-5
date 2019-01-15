@@ -21,11 +21,9 @@ public:
     void setTargetVectorDimension(int targetVectorDimension);
     friend ifstream &operator>>(ifstream& stream, Element element);
     friend ostream &operator<<(ostream& stream, Element element);
-
     void createTargetVector();
     Element* getShiftedBeRandomClone();
-    void moveByRandom();
-
+    bool operator>(Element &element);
 private:
     int inputVectorDimension;
     int targetVectorDimension;

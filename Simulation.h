@@ -16,6 +16,8 @@ class Simulation {
 
 public:
     void init(const char * filename);
+    void run();
+    friend ostream& operator<<(ostream &stream, Simulation &simulation);
 
     struct InvalidFilenameException : public exception {
         const char* filename;
@@ -58,7 +60,6 @@ public:
         }
     };
 
-    void run();
 
 private:
     vector<Element*> elements;

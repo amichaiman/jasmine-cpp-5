@@ -3,6 +3,7 @@
 //
 
 #include "Simulation.h"
+#include "Pareto.h"
 #include <fstream>
 #include <iostream>
 #include <iomanip>
@@ -29,7 +30,7 @@ void Simulation::init(const char *filename) {
         try {
             file >> *element;
         } catch (exception &e) {
-            throw InvalidPopulationDefinition(filename, i+1);
+            throw InvalidPopulationDefinition(filename, i+2);
         }
         element->createTargetVector();
         elements.push_back(element);
@@ -44,6 +45,8 @@ void Simulation::init(const char *filename) {
 void Simulation::run() {
     for (int i=0; i <numOfIterations; i++) {
         doublePopulation();
+        Pareto<vector<Element*> >::ParetoSorting(elements);
+        elements.erase(elements.begin()+numOfElements, elements.end());
     }
 }
 
@@ -52,11 +55,17 @@ void Simulation::doublePopulation() {
         Element* newElement = elements.at(static_cast<unsigned long>(i))->getShiftedBeRandomClone();
         elements.push_back(newElement);
     }
+}
 
+ostream &operator<<(ostream &stream, Simulation &simulation) {
+    for (int i=0; i<simulation.numOfElements; i++) {
+        stream << *(simulation.elements.at(static_cast<unsigned long>(i))) << endl;
+    }
+    return stream;
 }
 
 double roundToSixDecimalPoints(double n) {
-    return (floor(n*1000000))/1000000.0;
+    return floor(n * 1000000) / 1000000.0;
 }
 ostream &operator<<(ostream& stream, Element element) {
     for (int i=0; i<element.targetVectorDimension; i++) {
